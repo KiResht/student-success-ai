@@ -3,6 +3,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, r2_score
 
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
 print("Loading student data...")
 df = pd.read_csv('student-mat.csv', sep=';')
 
@@ -26,3 +30,18 @@ print(f"Mean Absolute Error: {mae:.2f} (How many grade points the AI is off by, 
 importances = pd.Series(model.feature_importances_, index=X.columns)
 print("\nTop 5 Most Important Factors for Student Success:")
 print(importances.nlargest(5))
+
+print("\nGenerating Success Factor Chart...")
+plt.figure(figsize=(10, 6))
+
+top_factors = importances.nlargest(5).sort_values(ascending=True)
+
+sns.barplot(x=top_factors.values, y=top_factors.index, palette='mako')
+
+plt.title('Top 5 Predictors of Student Success', fontsize=14, fontweight='bold')
+plt.xlabel('AI Importance Score', fontsize=12)
+plt.ylabel('Social/Environmental Factor', fontsize=12)
+
+plt.tight_layout()
+plt.savefig('success_factors.png', dpi=300)
+print("Graph saved successfully as 'success_factors.png'!")
