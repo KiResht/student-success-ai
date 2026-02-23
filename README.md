@@ -27,6 +27,8 @@ Libraries: "Pandas" for data manipulation and cleaning
 * Identifying Success Drivers: The model allows us to see which social factors (like mother's education or family size) have the highest impact on final grades.
 * Early Intervention: By identifying students with a high "Predicted Failure Risk" early in the semester, schools can allocate resources more effectively.
 
+![Success Factors Chart](success_factors.png)
+
 ---
 
 ### Future Goals
